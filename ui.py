@@ -5,6 +5,7 @@ import streamlit.components.v1 as components
 import time
 from dotenv import load_dotenv
 load_dotenv(override=True)
+import os
 
 # Configure logger
 logging.basicConfig(format="\n%(asctime)s\n%(message)s", level=logging.INFO, force=True)
@@ -23,14 +24,19 @@ def generate_text():
     if len(query) == 0:
         st.session_state.text_error = "Have you considered typing something?"
         return
-
+    
+    if not repository_list or len(repository_list) == 0:
+        st.session_state.text_error = "You need to mention atleast one repository"
+        return
+    
+    
     if st.session_state.n_requests >= 10:
         st.session_state.text_error = "Too many requests. Please wait a few seconds before generating another Tweet."
         logging.info(f"Session request limit reached: {st.session_state.n_requests}")
         st.session_state.n_requests = 1
         return
 
-    result = generate_response(query)
+    result = generate_response(query, repository_list.split(":"))
 
     # st.session_state.response = result.response
     st.session_state.answer = result
@@ -69,11 +75,17 @@ st.write(
 # Render Streamlit page
 st.title("Github AI")
 st.markdown(
-    "Shoot me a dm [@cto_junior](https://twitter.com/cto_junior) if it breaks (which it will), or you want to sponsor credits."
+   "#### Search Any github repo containing markdown documentation using Natural Language queries" 
+)
+
+st.markdown(
+    "Shoot me a dm [@khare_khote](https://twitter.com/khare_khote) if it breaks (which it will), or you want to sponsor credits."
 )
 
 
-query = st.text_input(label="What do you want to know about Github?")
+query = st.text_input(label="What do you want to know from Github?")
+repository_list = st.text_input(label="Enter names of repository to search from in the format org1/repo1\:org2/repo2\:org3/repo3")
+
 if st.session_state.text_error:
     st.warning(st.session_state.text_error)
 

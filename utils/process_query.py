@@ -33,13 +33,13 @@ def get_search_terms(query):
     return list(set(filtered_tokens))
 
 
-def generate_response(query):
+def generate_response(query, github_repo_list):
     print(f"Question Asked by the user: {query}")
 
     search_terms = get_search_terms(query)
-    documentation_urls = search_github_documentation([query])
+    documentation_urls = search_github_documentation([query], github_repo_list)
     if len(documentation_urls) == 0:
-        documentation_urls = search_github_documentation(['+'.join(search_terms)])
+        documentation_urls = search_github_documentation(['+'.join(search_terms)], github_repo_list)
     
     if len(documentation_urls) == 0:
         print("Sorry couldn't find anything! Give it another try with a modified question!")

@@ -25,10 +25,14 @@ def get_doc_content(file_url):
 
 
 ## return list of tuples containing (raw_markdown_file_url, github_file_url, html_file_url)
-def search_github_documentation(query_items):
+def search_github_documentation(query_items, github_repo_list):
     doc_url_list = set()
     file_url_list = set()
-    for repo in DOCUMENTATION_REPOSITORY_LIST:
+    repo_list = DOCUMENTATION_REPOSITORY_LIST
+    if github_repo_list is not None:
+        repo_list = github_repo_list
+    
+    for repo in repo_list:
         print(f"Searching in repo: {repo}")
         for query in query_items:
             if len(doc_url_list) >= MAX_URL_COUNT:

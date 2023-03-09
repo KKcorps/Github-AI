@@ -1,8 +1,8 @@
-# Github-AI-Slack-bot
+# Github-AI-bot
 
 ## Introduction
 
-GithubAIBot is a Python-based chatbot that uses the Natural Language Toolkit (NLTK) library and OpenAI API to answer common queries related to Github docs. The chatbot takes a user's question and generates a response using machine learning techniques. The responses are based on the analysis of relevant documentation available on GitHub, providing users with precise and accurate answers.
+Github AI Bot is a Python-based chatbot that uses the Natural Language Toolkit (NLTK) library and OpenAI API to answer common queries related to Github docs. The chatbot takes a user's question and generates a response using machine learning techniques. The responses are based on the analysis of relevant documentation available on GitHub, providing users with precise and accurate answers.
 
 ## Requirements
 
@@ -37,6 +37,4 @@ docker run --entrypoint streamlit -p 8501:8501 github-ai-chat run ui.py
 
 ## Examples
 
-![Upsert Image](./img/upsert.png)
-
-![Geospatial Image](./img/geospatial.png)
+![Github Commit Image](./img/github_ai.png)
