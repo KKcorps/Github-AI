@@ -83,8 +83,8 @@ st.markdown(
 )
 
 
-query = st.text_input(label="What do you want to know from Github?")
-repository_list = st.text_input(label="Enter names of repository to search from in the format org1/repo1\:org2/repo2\:org3/repo3")
+query = st.text_input(label="What do you want to know from Github?", placeholder="How to commit to a repo?")
+repository_list = st.text_input(label="Enter names of repository to search from in the format org1/repo1\:org2/repo2\:org3/repo3", placeholder="github/docs")
 
 if st.session_state.text_error:
     st.warning(st.session_state.text_error)
